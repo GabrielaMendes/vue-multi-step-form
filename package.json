@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "pinia": "^2.0.36",
+    "vee-validate": "^4.9.3",
     "vue": "^3.3.2"
   },
   "devDependencies": {
