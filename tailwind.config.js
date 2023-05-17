@@ -4,16 +4,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        "marine-blue": "#02295A",
+        "purplish-blue": "#473DFF",
+        "pastel-blue": "#ADBEFF",
+        "light-blue": "#BFE2FD",
+        "strawberry-red": "#ED3548",
         "cool-gray": "#7A7E94",
         "light-gray": "#D6D9E6",
         magnolia: "#F0F6FF",
         alabaster: "#FAFBFF",
       },
       fontFamily: {
-        "ubuntu": ["'Ubuntu', sans-serif"],
-      },
-      container: {
-        center: true,
+        ubuntu: ["'Ubuntu', sans-serif"],
       },
     },
   },
