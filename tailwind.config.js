@@ -6,8 +6,14 @@ module.exports = {
       colors: {
         "cool-gray": "#7A7E94",
         "light-gray": "#D6D9E6",
-        "magnolia": "#F0F6FF",
-        "alabaster": "#FAFBFF",
+        magnolia: "#F0F6FF",
+        alabaster: "#FAFBFF",
+      },
+      fontFamily: {
+        "ubuntu": ["'Ubuntu', sans-serif"],
+      },
+      container: {
+        center: true,
       },
     },
   },
