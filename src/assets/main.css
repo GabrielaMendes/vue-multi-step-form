@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 body {
-  @apply bg-magnolia;
+  @apply bg-magnolia font-ubuntu text-cool-gray;
 }
