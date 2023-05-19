@@ -34,8 +34,7 @@ const isPhoneTouched = useIsFieldTouched('phone');
           type="text"
           id="name"
           name="name"
-          class="block w-full p-3 rounded-md text-marine-blue font-medium border border-light-gray transition duration-500 focus:outline-none focus:border-purplish-blue"
-          :class="!isNameValid && isNameTouched? ' border-strawberry-red' : ''"
+          :class="!isNameValid && isNameTouched? ' border-strawberry-red' : ' border-light-gray'"
           placeholder="e.g. Stephen King"
           :rules="'required|alpha_spaces|min:3|max:100'"
         />
@@ -57,8 +56,7 @@ const isPhoneTouched = useIsFieldTouched('phone');
           type="email"
           id="email"
           name="email"
-          class="block w-full p-3 rounded-md text-marine-blue font-medium border border-light-gray transition duration-500 focus:outline-none focus:border-purplish-blue"
-          :class="!isEmailValid && isEmailTouched ? ' border-strawberry-red' : ''"
+          :class="!isEmailValid && isEmailTouched ? ' border-strawberry-red' : ' border-light-gray'"
           placeholder="e.g. stephenking@lorem.com"
           :rules="'required|email|min:3|max:100'"
         />
@@ -80,8 +78,7 @@ const isPhoneTouched = useIsFieldTouched('phone');
           type="text"
           id="phone"
           name="phone"
-          class="block w-full p-3 rounded-md text-marine-blue font-medium border border-light-gray transition duration-500 focus:outline-none focus:border-purplish-blue"
-          :class="!isPhoneValid && isPhoneTouched ? ' border-strawberry-red' : ''"
+          :class="!isPhoneValid && isPhoneTouched ? ' border-strawberry-red' : ' border-light-gray'"
           placeholder="e.g. +1 234 567 890"
           :rules="'required|phone'"
         />
@@ -89,3 +86,9 @@ const isPhoneTouched = useIsFieldTouched('phone');
     </template>
   </BaseFormStep>
 </template>
+
+<style scoped>
+input {
+  @apply block w-full p-3 rounded-md text-marine-blue font-medium border transition duration-500 focus:outline-none focus:border-purplish-blue
+}
+</style>
