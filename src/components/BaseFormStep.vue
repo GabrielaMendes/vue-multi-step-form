@@ -1,11 +1,11 @@
 <template>
-  <div class="h-full flex flex-col pt-10 pb-5 px-20">
+  <div class="h-full flex flex-col pt-10 pb-5 px-24">
     <section>
       <h1 class="font-bold text-[34px] text-marine-blue"><slot name="title"></slot></h1>
       <p><slot name="description"></slot></p>
     </section>
     
-    <section class="mt-8">
+    <section class="mt-10">
       <slot name="main"></slot>
     </section>
     
