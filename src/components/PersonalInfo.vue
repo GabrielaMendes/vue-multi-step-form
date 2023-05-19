@@ -89,6 +89,3 @@ const isPhoneTouched = useIsFieldTouched('phone');
     </template>
   </BaseFormStep>
 </template>
-
-<style>
-</style>
