@@ -1,10 +1,14 @@
 <script setup>
-import { useIsFieldValid } from "vee-validate";
+import { useIsFieldValid, useIsFieldTouched } from "vee-validate";
 import BaseFormStep from "./BaseFormStep.vue";
 
 const isNameValid = useIsFieldValid('name');
 const isEmailValid = useIsFieldValid('email');
 const isPhoneValid = useIsFieldValid('phone');
+
+const isNameTouched = useIsFieldTouched('name');
+const isEmailTouched = useIsFieldTouched('email');
+const isPhoneTouched = useIsFieldTouched('phone');
 </script>
 
 <template>
@@ -31,7 +35,7 @@ const isPhoneValid = useIsFieldValid('phone');
           id="name"
           name="name"
           class="block w-full p-3 rounded-md text-marine-blue font-medium border border-light-gray transition duration-500 focus:outline-none focus:border-purplish-blue"
-          :class="!isNameValid ? ' border-strawberry-red' : ''"
+          :class="!isNameValid && isNameTouched? ' border-strawberry-red' : ''"
           placeholder="e.g. Stephen King"
           :rules="'required|alpha_spaces|min:3|max:100'"
         />
@@ -54,7 +58,7 @@ const isPhoneValid = useIsFieldValid('phone');
           id="email"
           name="email"
           class="block w-full p-3 rounded-md text-marine-blue font-medium border border-light-gray transition duration-500 focus:outline-none focus:border-purplish-blue"
-          :class="!isEmailValid ? ' border-strawberry-red' : ''"
+          :class="!isEmailValid && isEmailTouched ? ' border-strawberry-red' : ''"
           placeholder="e.g. stephenking@lorem.com"
           :rules="'required|email|min:3|max:100'"
         />
@@ -77,7 +81,7 @@ const isPhoneValid = useIsFieldValid('phone');
           id="phone"
           name="phone"
           class="block w-full p-3 rounded-md text-marine-blue font-medium border border-light-gray transition duration-500 focus:outline-none focus:border-purplish-blue"
-          :class="!isPhoneValid ? ' border-strawberry-red' : ''"
+          :class="!isPhoneValid && isPhoneTouched ? ' border-strawberry-red' : ''"
           placeholder="e.g. +1 234 567 890"
           :rules="'required|phone'"
         />
