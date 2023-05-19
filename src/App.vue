@@ -1,4 +1,5 @@
 <script setup>
+import PersonalInfo from "./components/PersonalInfo.vue"
 </script>
 
 <template>
@@ -8,6 +9,9 @@
       <div class="h-full"></div>
       
       <main class="h-full">
+        <VeeForm class="h-full">
+          <PersonalInfo />
+        </VeeForm>
       </main>
     </div>
   </div>
