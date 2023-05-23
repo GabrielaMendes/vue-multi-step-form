@@ -1,5 +1,6 @@
 <script setup>
 import PersonalInfo from "./components/PersonalInfo.vue"
+import PickAddOns from "./components/PickAddOns.vue";
 import SelectPlan from "./components/SelectPlan.vue";
 </script>
 
@@ -11,7 +12,7 @@ import SelectPlan from "./components/SelectPlan.vue";
       
       <main class="h-full">
         <VeeForm class="h-full">
-          <SelectPlan />
+          <PickAddOns />
         </VeeForm>
       </main>
     </div>
