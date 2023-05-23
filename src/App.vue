@@ -1,4 +1,5 @@
 <script setup>
+import FinishingUp from "./components/FinishingUp.vue";
 import PersonalInfo from "./components/PersonalInfo.vue"
 import PickAddOns from "./components/PickAddOns.vue";
 import SelectPlan from "./components/SelectPlan.vue";
@@ -12,7 +13,7 @@ import SelectPlan from "./components/SelectPlan.vue";
       
       <main class="h-full">
         <VeeForm class="h-full">
-          <PickAddOns />
+          <FinishingUp />
         </VeeForm>
       </main>
     </div>
