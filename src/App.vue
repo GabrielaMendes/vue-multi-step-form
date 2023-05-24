@@ -4,6 +4,7 @@ import FinishingUp from "./components/FinishingUp.vue";
 import PersonalInfo from "./components/PersonalInfo.vue";
 import PickAddOns from "./components/PickAddOns.vue";
 import SelectPlan from "./components/SelectPlan.vue";
+import MenuItem from "./components/MenuItem.vue";
 
 const formActive = ref(true);
 
@@ -80,30 +81,12 @@ const stepList = [
       <div
         class="h-full px-6 py-12 rounded-2xl bg-[url('src/assets/images/bg-sidebar-desktop.svg')] bg-cover bg-bottom"
       >
-        <div
+        <MenuItem
           v-for="step in stepList"
           :key="step.number"
-          class="flex items-center gap-4 mb-10"
-        >
-          <div
-            class="w-10 h-10 border-2 border-pastel-blue rounded-full font-bold flex items-center justify-center transition-color duration-300 ease-out"
-            :class="{ 'bg-light-blue': step.number === currentStep }"
-          >
-            <span
-              class="text-alabaster"
-              :class="{ 'text-marine-blue': step.number === currentStep }"
-              >{{ step.number }}</span
-            >
-          </div>
-          <div>
-            <p class="uppercase text-sm text-pastel-blue">
-              step {{ step.number }}
-            </p>
-            <h3 class="uppercase font-bold tracking-widest text-alabaster">
-              {{ step.title }}
-            </h3>
-          </div>
-        </div>
+          :step="step"
+          :currentStep="currentStep"
+        />
       </div>
 
       <!-- Main Form -->
