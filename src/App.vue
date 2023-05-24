@@ -58,7 +58,7 @@ const stepList = [
 <template>
   <div class="px-4">
     <div
-      class="mx-auto mt-[12svh] h-[76svh] max-w-[1200px] p-4 rounded-xl bg-white grid grid-cols-3 gap-6"
+      class="mx-auto mt-[12svh] h-[76svh] max-w-[1100px] p-4 rounded-xl bg-white grid grid-cols-3 gap-6"
     >
       <!-- Side/Top Menu -->
       <div

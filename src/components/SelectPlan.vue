@@ -50,7 +50,7 @@ const plans = [
           tabindex="0"
           :for="plan.name"
           @keypress.enter="planSelected = plan.name"
-          class="plan-option"
+          class="my-plan-option"
           :class="
             planSelected === plan.name
               ? ' bg-alabaster border-purplish-blue'
@@ -77,7 +77,12 @@ const plans = [
                 isMonthly ? `$${plan.mo}/mo` : `$${plan.yr}/yr`
               }}
             </p>
-            <transition name="slide">
+            <transition
+              enter-from-class="opacity-0 scale-y-0"
+              enter-active-class="transition-all origin-top duration-[400ms] ease-in-out"
+              leave-active-class="transition-all origin-top duration-[400ms] ease-in-out"
+              leave-to-class="opacity-0 scale-y-0"
+            >
               <p v-show="!isMonthly" class="text-sm text-marine-blue">
                 2 months free
               </p>
@@ -115,27 +120,3 @@ const plans = [
     </template>
   </BaseFormStep>
 </template>
-
-<style scoped>
-.plan-option {
-  @apply flex-1 flex flex-col justify-between p-4 rounded-lg border transition duration-[400ms] cursor-pointer hover:border-purplish-blue focus:outline-none focus-visible:border-purplish-blue focus-visible:ring-offset-2 focus-visible:ring-2  focus-visible:ring-marine-blue;
-}
-
-.slide-enter-active,
-.slide-leave-active {
-  transform-origin: top;
-  transition: all 0.4s ease-in-out;
-}
-
-.slide-enter-to,
-.slide-leave-from {
-  transform: scaleY(1);
-  opacity: 1;
-}
-
-.slide-enter-from,
-.slide-leave-to {
-  transform: scaleY(0);
-  opacity: 0;
-}
-</style>
