@@ -5,6 +5,8 @@ import BaseFormStep from "./BaseFormStep.vue";
 const props = defineProps(["isMonthly"]);
 
 const billingType = computed(() => (props.isMonthly ? "mo" : "yr"));
+
+defineEmits(["changeBeforeFinish"])
 </script>
 
 <template>
@@ -21,7 +23,7 @@ const billingType = computed(() => (props.isMonthly ? "mo" : "yr"));
             <h3 class="text-marine-blue text-lg font-bold">
               Arcade({{ isMonthly ? "Monthly" : "Yearly" }})
             </h3>
-            <a href="#" class="text-inherit underline decoration-2"> Change </a>
+            <button @click="$emit('changeBeforeFinish')" type="button" class="text-inherit underline decoration-2 hover:text-purplish-blue focus:outline-none focus-visible:text-purplish-blue"> Change </button>
           </div>
           <p class="text-marine-blue font-bold">$9/{{ billingType }}</p>
         </div>
