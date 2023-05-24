@@ -23,11 +23,23 @@ const currentStepComponent = computed(
 
 const monthlyPlan = ref(true);
 
-const changePlan = () => {
+const onChangePlan = () => {
   monthlyPlan.value = !monthlyPlan.value;
 };
 
-const editForm = () => {
+const planSelected = ref("arcade")
+
+const onNewPlanSelected = (newValue) => {
+  planSelected.value = newValue;
+}
+
+const addOns = ref([])
+
+const onAddOnsChange = (newValue) => {
+  addOns.value = newValue
+}
+
+const onEditForm = () => {
   currentStep.value = 2;
 };
 
@@ -119,8 +131,10 @@ const stepList = [
                 :validate="validate"
                 @go-back="prevStep"
                 @go-next="nextStep"
-                @change-plan="changePlan"
-                @change-before-finish="editForm"
+                @change-plan="onChangePlan"
+                @new-plan-selected="onNewPlanSelected"
+                @add-ons-change="onAddOnsChange"
+                @edit-form="onEditForm"
               ></component>
             </KeepAlive>
           </transition>

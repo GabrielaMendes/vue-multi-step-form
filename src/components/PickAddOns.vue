@@ -1,31 +1,12 @@
 <script setup>
-import BaseFormStep from "./BaseFormStep.vue";
 import { ref } from "vue";
+import { watchDeep } from '@vueuse/core'
+import { addOns } from "../data/plans-data";
+import BaseFormStep from "./BaseFormStep.vue";
 
 defineProps(["isMonthly"])
 
 const pickedAddOns = ref([]);
-
-const addOns = [
-  {
-    name: "Online service",
-    description: "Access to multiplayer games",
-    mo: 1,
-    yr: 10,
-  },
-  {
-    name: "Larger storage",
-    description: "Extra 1TB of cloud save",
-    mo: 2,
-    yr: 20,
-  },
-  {
-    name: "Customizable profile",
-    description: "Custom theme on your phone",
-    mo: 2,
-    yr: 20,
-  },
-];
 
 const toggleCheck = (name) => {
   const idx = pickedAddOns.value.indexOf(name)
@@ -37,6 +18,12 @@ const toggleCheck = (name) => {
 
   pickedAddOns.value.splice(idx, 1)
 } 
+
+const emit = defineEmits(["addOnsChange"])
+
+watchDeep(pickedAddOns, (newValue) => {
+  emit("addOnsChange", newValue)
+})
 </script>
 
 <template>
