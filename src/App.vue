@@ -18,7 +18,7 @@ const prevStep = () => {
 };
 
 const currentStepComponent = computed(
-  () => stepList.find((step) => (step.number === currentStep.value)).component
+  () => stepList.find((step) => step.number === currentStep.value).component
 );
 
 const onFormSubmit = () => {
@@ -85,22 +85,30 @@ const stepList = [
       </div>
 
       <!-- Main Form -->
-      <main class="col-span-2 h-full">
+      <main class="col-span-2 h-full overflow-hidden">
         <!-- Form -->
         <VeeForm
           @submit="onFormSubmit"
-          v-slot="{ validate}"
+          v-slot="{ validate }"
           class="h-full"
           v-if="formActive"
         >
-          <component
-            :is="currentStepComponent"
-            :isFirst="currentStep === 1"
-            :isLast="currentStep === stepList.length"
-            :validate="validate"
-            @go-back="prevStep"
-            @go-next="nextStep"
-          ></component>
+          <transition
+            mode="out-in"
+            enter-from-class="opacity-0 translate-x-[-50%]"
+            leave-to-class="opacity-0 translate-x-[-50%]"
+            enter-active-class="transition-all duration-[500ms] ease-out"
+            leave-active-class="transition-all duration-[500ms] ease-in"
+          >
+            <component
+              :is="currentStepComponent"
+              :isFirst="currentStep === 1"
+              :isLast="currentStep === stepList.length"
+              :validate="validate"
+              @go-back="prevStep"
+              @go-next="nextStep"
+            ></component>
+          </transition>
         </VeeForm>
 
         <!-- Thank you -->
