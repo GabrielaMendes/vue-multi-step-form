@@ -21,6 +21,12 @@ const currentStepComponent = computed(
   () => stepList.find((step) => step.number === currentStep.value).component
 );
 
+const monthlyPlan = ref(true)
+
+const changePlan = () => {
+  monthlyPlan.value = !monthlyPlan.value
+}
+
 const onFormSubmit = () => {
   formActive.value = false;
 };
@@ -105,9 +111,11 @@ const stepList = [
                 :is="currentStepComponent"
                 :isFirst="currentStep === 1"
                 :isLast="currentStep === stepList.length"
+                :isMonthly="monthlyPlan"
                 :validate="validate"
                 @go-back="prevStep"
                 @go-next="nextStep"
+                @change-plan="changePlan"
               ></component>
             </KeepAlive>
           </transition>

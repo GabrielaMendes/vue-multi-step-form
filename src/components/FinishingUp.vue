@@ -1,5 +1,10 @@
 <script setup>
+import { computed } from "vue";
 import BaseFormStep from "./BaseFormStep.vue";
+
+const props = defineProps(["isMonthly"]);
+
+const billingType = computed(() => (props.isMonthly ? "mo" : "yr"));
 </script>
 
 <template>
@@ -14,30 +19,30 @@ import BaseFormStep from "./BaseFormStep.vue";
         <div class="flex items-center justify-between">
           <div>
             <h3 class="text-marine-blue text-lg font-bold">
-              Arcade(Monthly)
+              Arcade({{ isMonthly ? "Monthly" : "Yearly" }})
             </h3>
-            <a href="#" class="text-inherit underline decoration-2">
-              Change
-            </a>
+            <a href="#" class="text-inherit underline decoration-2"> Change </a>
           </div>
-          <p class="text-marine-blue font-bold">$9/mo</p>
+          <p class="text-marine-blue font-bold">$9/{{ billingType }}</p>
         </div>
-        
-        <hr class="my-4">
+
+        <hr class="my-4" />
 
         <div class="flex justify-between">
           <p>Online service</p>
-          <p class="text-marine-blue">+1/mo</p>
+          <p class="text-marine-blue">+1/{{ billingType }}</p>
         </div>
         <div class="flex justify-between mt-4">
           <p>Larger storage</p>
-          <p class="text-marine-blue">+2/mo</p>
+          <p class="text-marine-blue">+2/{{ billingType }}</p>
         </div>
       </div>
-      
+
       <div class="flex justify-between p-6">
-        <p>Total (per month)</p>
-        <p  class="text-xl text-purplish-blue font-bold">+$12/mo</p>
+        <p>Total (per {{ isMonthly ? "month" : "year" }})</p>
+        <p class="text-xl text-purplish-blue font-bold">
+          +$12/{{ billingType }}
+        </p>
       </div>
     </template>
   </BaseFormStep>

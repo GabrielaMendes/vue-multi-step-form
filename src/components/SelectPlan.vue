@@ -2,7 +2,14 @@
 import { ref } from "vue";
 import BaseFormStep from "./BaseFormStep.vue";
 
-const isMonthly = ref(true);
+defineProps(["isMonthly"]);
+
+const emit = defineEmits(["changePlan"]);
+
+const changePlanBilling = () => {
+  emit("changePlan");
+};
+
 const planSelected = ref("arcade");
 
 const plans = {
@@ -57,7 +64,11 @@ const plans = {
           />
           <div class="mt-9">
             <h3 class="font-medium text-marine-blue mt-auto">Arcade</h3>
-            <p>{{ isMonthly ? `$${plans.arcade.mo}/mo` : `$${plans.arcade.yr}/yr`}}</p>
+            <p>
+              {{
+                isMonthly ? `$${plans.arcade.mo}/mo` : `$${plans.arcade.yr}/yr`
+              }}
+            </p>
             <transition name="slide">
               <p v-show="!isMonthly" class="text-sm text-marine-blue">
                 2 months free
@@ -92,7 +103,13 @@ const plans = {
           />
           <div class="mt-9">
             <h3 class="font-medium text-marine-blue">Advanced</h3>
-            <p>{{ isMonthly ? `$${plans.advanced.mo}/mo` : `$${plans.advanced.yr}/yr`}}</p>
+            <p>
+              {{
+                isMonthly
+                  ? `$${plans.advanced.mo}/mo`
+                  : `$${plans.advanced.yr}/yr`
+              }}
+            </p>
             <transition name="slide">
               <p v-show="!isMonthly" class="text-sm text-marine-blue">
                 2 months free
@@ -127,7 +144,9 @@ const plans = {
           />
           <div class="mt-9">
             <h3 class="font-medium text-marine-blue">Pro</h3>
-            <p>{{ isMonthly ? `$${plans.pro.mo}/mo` : `$${plans.pro.yr}/yr`}}</p>
+            <p>
+              {{ isMonthly ? `$${plans.pro.mo}/mo` : `$${plans.pro.yr}/yr` }}
+            </p>
             <transition name="slide">
               <p v-show="!isMonthly" class="text-sm text-marine-blue">
                 2 months free
@@ -147,20 +166,15 @@ const plans = {
         >
           Monthly
         </h3>
-        <label
-          tabindex="0"
-          @keypress.enter="isMonthly = !isMonthly"
-          for="checkbox"
-          class="relative h-6 w-12 rounded-full bg-marine-blue cursor-pointer after:h-4 after:w-4 focus:outline-none focus-visible:ring-offset-2 focus-visible:ring-2  focus-visible:ring-marine-blue after:rounded-full after:bg-alabaster after:absolute after:top-1 after:left-1 after:transition after:duration-300"
-          :class="{ 'after:translate-x-[150%]': !isMonthly }"
-        >
-          <input
-            type="checkbox"
-            id="checkbox"
-            v-model="isMonthly"
-            class="hidden"
-          />
-        </label>
+        <label for="checkbox" class="hidden">Select plan type (monthly or yearly):</label>
+        <input
+          type="checkbox"
+          id="checkbox"
+          checked="true"
+          @keypress.enter="(e) => e.target.click()"
+          @change="changePlanBilling"
+          class="appearance-none relative h-6 w-12 rounded-full bg-marine-blue cursor-pointer after:h-4 after:w-4 focus:outline-none focus-visible:ring-offset-2 focus-visible:ring-2 focus-visible:ring-marine-blue after:rounded-full after:bg-alabaster after:absolute after:top-1 after:right-1 after:transition after:duration-300 checked:after:translate-x-[-150%]"
+        />
         <h3
           class="font-medium"
           :class="!isMonthly ? ' text-marine-blue' : ' text-cool-gray'"

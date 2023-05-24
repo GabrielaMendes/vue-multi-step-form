@@ -2,6 +2,8 @@
 import BaseFormStep from "./BaseFormStep.vue";
 import { ref } from "vue";
 
+defineProps(["isMonthly"])
+
 const pickedAddOns = ref([]);
 
 const addOns = [
@@ -71,7 +73,7 @@ const toggleCheck = (name) => {
           <p class="text-sm">{{ addOn.description }}</p>
         </div>
         <p class="text-purplish-blue text-sm ml-auto">
-          {{ `$${addOn.mo}/mo` }}
+          {{ isMonthly ? `$${addOn.mo}/mo` : `$${addOn.yr}/yr`}}
         </p>
       </label>
     </template>
