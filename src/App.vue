@@ -22,24 +22,6 @@ const currentStepComponent = computed(
   () => stepList.find((step) => step.number === currentStep.value).component
 );
 
-const monthlyPlan = ref(true);
-
-const onChangePlan = () => {
-  monthlyPlan.value = !monthlyPlan.value;
-};
-
-const planSelected = ref("arcade")
-
-const onNewPlanSelected = (newValue) => {
-  planSelected.value = newValue;
-}
-
-const addOns = ref([])
-
-const onAddOnsChange = (newValue) => {
-  addOns.value = newValue
-}
-
 const onEditForm = () => {
   currentStep.value = 2;
 };
@@ -110,13 +92,9 @@ const stepList = [
                 :is="currentStepComponent"
                 :isFirst="currentStep === 1"
                 :isLast="currentStep === stepList.length"
-                :isMonthly="monthlyPlan"
                 :validate="validate"
                 @go-back="prevStep"
                 @go-next="nextStep"
-                @change-plan="onChangePlan"
-                @new-plan-selected="onNewPlanSelected"
-                @add-ons-change="onAddOnsChange"
                 @edit-form="onEditForm"
               ></component>
             </KeepAlive>

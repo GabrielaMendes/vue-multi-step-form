@@ -1,21 +1,11 @@
 <script setup>
-import { ref, watch } from "vue";
-import BaseFormStep from "./BaseFormStep.vue";
+import { storeToRefs } from 'pinia'
+import { usePlanStore } from "../stores/plan"
 import { plans } from "../data/plans-data";
+import BaseFormStep from "./BaseFormStep.vue";
 
-defineProps(["isMonthly"]);
-
-const emit = defineEmits(["changePlan", "newPlanSelected"]);
-
-const changePlanBilling = () => {
-  emit("changePlan");
-};
-
-const planSelected = ref("arcade");
-
-watch(planSelected, (newValue) => {
-  emit("newPlanSelected", newValue)
-})
+const planStore = usePlanStore()
+const { monthlyPlan: isMonthly, planTypeSelected } = storeToRefs(planStore)
 </script>
 
 <template>
@@ -33,10 +23,10 @@ watch(planSelected, (newValue) => {
           :key="plan.name"
           tabindex="0"
           :for="plan.name"
-          @keypress.enter="planSelected = plan.name"
+          @keypress.enter="e => e.target.click()"
           class="my-plan-option"
           :class="
-            planSelected === plan.name
+            planTypeSelected === plan.name
               ? ' bg-alabaster border-purplish-blue'
               : ' border-light-gray'
           "
@@ -47,7 +37,7 @@ watch(planSelected, (newValue) => {
             :id="plan.name"
             :value="plan.name"
             class="hidden"
-            v-model="planSelected"
+            v-model="planTypeSelected"
           />
           <img
             :src="plan.icon"
@@ -91,7 +81,7 @@ watch(planSelected, (newValue) => {
           id="checkbox"
           checked="true"
           @keypress.enter="(e) => e.target.click()"
-          @change="changePlanBilling"
+          v-model="isMonthly"
           class="appearance-none relative h-6 w-12 rounded-full bg-marine-blue cursor-pointer after:h-4 after:w-4 focus:outline-none focus-visible:ring-offset-2 focus-visible:ring-2 focus-visible:ring-marine-blue after:rounded-full after:bg-alabaster after:absolute after:top-1 after:right-1 after:transition after:duration-300 checked:after:translate-x-[-150%]"
         />
         <h3

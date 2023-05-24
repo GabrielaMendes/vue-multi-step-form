@@ -1,12 +1,14 @@
 <script setup>
 import { computed } from "vue";
+import { usePlanStore } from "../stores/plan";
+
 import BaseFormStep from "./BaseFormStep.vue";
 
-const props = defineProps(["isMonthly"]);
+const { monsthlyPlan: isMonthly } = usePlanStore();
 
-const billingType = computed(() => (props.isMonthly ? "mo" : "yr"));
+const billingType = computed(() => (isMonthly ? "mo" : "yr"));
 
-defineEmits(["editForm"])
+defineEmits(["editForm"]);
 </script>
 
 <template>
@@ -23,7 +25,13 @@ defineEmits(["editForm"])
             <h3 class="text-marine-blue text-lg font-bold">
               Arcade({{ isMonthly ? "Monthly" : "Yearly" }})
             </h3>
-            <button @click="$emit('editForm')" type="button" class="text-inherit underline decoration-2 hover:text-purplish-blue focus:outline-none focus-visible:text-purplish-blue"> Change </button>
+            <button
+              @click="$emit('editForm')"
+              type="button"
+              class="text-inherit underline decoration-2 hover:text-purplish-blue focus:outline-none focus-visible:text-purplish-blue"
+            >
+              Change
+            </button>
           </div>
           <p class="text-marine-blue font-bold">$9/{{ billingType }}</p>
         </div>

@@ -1,12 +1,8 @@
 <script setup>
-import { ref } from "vue";
-import { watchDeep } from '@vueuse/core'
 import { addOns } from "../data/plans-data";
+import { usePlanStore } from "../stores/plan"
 import BaseFormStep from "./BaseFormStep.vue";
-
-defineProps(["isMonthly"])
-
-const pickedAddOns = ref([]);
+import { storeToRefs } from 'pinia';
 
 const toggleCheck = (name) => {
   const idx = pickedAddOns.value.indexOf(name)
@@ -17,13 +13,10 @@ const toggleCheck = (name) => {
   }
 
   pickedAddOns.value.splice(idx, 1)
-} 
+}
 
-const emit = defineEmits(["addOnsChange"])
-
-watchDeep(pickedAddOns, (newValue) => {
-  emit("addOnsChange", newValue)
-})
+const planStore = usePlanStore()
+const { selectedAddOns: pickedAddOns, monthlyPlan: isMonthly } = storeToRefs(planStore)
 </script>
 
 <template>
