@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@vee-validate/rules": "^4.9.4",
-    "@vueuse/core": "^10.1.2",
     "pinia": "^2.0.36",
     "vee-validate": "^4.9.3",
     "vue": "^3.3.2"
