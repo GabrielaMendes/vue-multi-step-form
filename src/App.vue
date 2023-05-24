@@ -100,14 +100,16 @@ const stepList = [
             enter-active-class="transition-all duration-[500ms] ease-out"
             leave-active-class="transition-all duration-[500ms] ease-in"
           >
-            <component
-              :is="currentStepComponent"
-              :isFirst="currentStep === 1"
-              :isLast="currentStep === stepList.length"
-              :validate="validate"
-              @go-back="prevStep"
-              @go-next="nextStep"
-            ></component>
+            <KeepAlive>
+              <component
+                :is="currentStepComponent"
+                :isFirst="currentStep === 1"
+                :isLast="currentStep === stepList.length"
+                :validate="validate"
+                @go-back="prevStep"
+                @go-next="nextStep"
+              ></component>
+            </KeepAlive>
           </transition>
         </VeeForm>
 
