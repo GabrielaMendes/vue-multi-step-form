@@ -19,6 +19,11 @@ export const plans = [
   },
 ];
 
+export const getPlanPrice = (planName, billingType) => {
+  const selectedPlan = plans.find((plan) => plan.name === planName);
+  return selectedPlan[billingType];
+};
+
 export const addOns = [
   {
     name: "Online service",
@@ -39,3 +44,8 @@ export const addOns = [
     yr: 20,
   },
 ];
+
+export const getAddOnPrice = (addOnName, billingType) => {
+  const selectedAddOn = addOns.find((addOn) => addOn.name === addOnName);
+  return selectedAddOn[billingType];
+};

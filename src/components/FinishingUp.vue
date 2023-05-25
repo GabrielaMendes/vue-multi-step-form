@@ -1,12 +1,15 @@
 <script setup>
-import { computed } from "vue";
 import { usePlanStore } from "../stores/plan";
-
+import { getPlanPrice, getAddOnPrice } from "../data/plans-data";
 import BaseFormStep from "./BaseFormStep.vue";
 
-const { monsthlyPlan: isMonthly } = usePlanStore();
-
-const billingType = computed(() => (isMonthly ? "mo" : "yr"));
+const {
+  monthlyPlan: isMonthly,
+  billingType,
+  planTypeSelected,
+  selectedAddOns,
+  totalPrice,
+} = usePlanStore();
 
 defineEmits(["editForm"]);
 </script>
@@ -22,8 +25,8 @@ defineEmits(["editForm"]);
       <div class="bg-alabaster p-6 rounded-lg">
         <div class="flex items-center justify-between">
           <div>
-            <h3 class="text-marine-blue text-lg font-bold">
-              Arcade({{ isMonthly ? "Monthly" : "Yearly" }})
+            <h3 class="text-marine-blue text-lg font-bold capitalize">
+              {{ planTypeSelected }}({{ isMonthly ? "Monthly" : "Yearly" }})
             </h3>
             <button
               @click="$emit('editForm')"
@@ -33,25 +36,30 @@ defineEmits(["editForm"]);
               Change
             </button>
           </div>
-          <p class="text-marine-blue font-bold">$9/{{ billingType }}</p>
+          <p class="text-marine-blue font-bold">
+            ${{ getPlanPrice(planTypeSelected, billingType) }} /
+            {{ billingType }}
+          </p>
         </div>
 
         <hr class="my-4" />
 
-        <div class="flex justify-between">
-          <p>Online service</p>
-          <p class="text-marine-blue">+1/{{ billingType }}</p>
-        </div>
-        <div class="flex justify-between mt-4">
-          <p>Larger storage</p>
-          <p class="text-marine-blue">+2/{{ billingType }}</p>
+        <div
+          v-for="addOn in selectedAddOns"
+          :key="addOn"
+          class="flex justify-between"
+        >
+          <p>{{ addOn }}</p>
+          <p class="text-marine-blue">
+            +{{ getAddOnPrice(addOn, billingType) }} / {{ billingType }}
+          </p>
         </div>
       </div>
 
       <div class="flex justify-between p-6">
         <p>Total (per {{ isMonthly ? "month" : "year" }})</p>
         <p class="text-xl text-purplish-blue font-bold">
-          +$12/{{ billingType }}
+          +${{ totalPrice }} / {{ billingType }}
         </p>
       </div>
     </template>
