@@ -8,7 +8,7 @@ import SelectPlan from "./components/SelectPlan.vue";
 import MenuItem from "./components/MenuItem.vue";
 
 const breakpoints = useBreakpoints(breakpointsTailwind);
-const isDesktop = breakpoints.greater("md");
+const isDesktop = breakpoints.greaterOrEqual("md");
 
 const formActive = ref(true);
 
@@ -59,70 +59,70 @@ const stepList = [
 </script>
 
 <template>
-  <div
-    class="md:container-height md:container-width p-4 rounded-xl bg-white grid grid-cols-3 gap-6"
-  >
-    <!-- Side/Top Menu -->
-    <teleport to="body" :disabled="isDesktop">
-      <div
-        class="top-menu md:side-menu"
-      >
-        <MenuItem
-          v-for="step in stepList"
-          :key="step.number"
-          :step="step"
-          :currentStep="currentStep"
-          :isDesktop="isDesktop"
-        />
-      </div>
-    </teleport>
-
-    <!-- Main Form -->
-    <main class="col-span-2 h-full">
-      <!-- Form -->
-      <VeeForm
-        @submit="onFormSubmit"
-        v-slot="{ validate }"
-        class="h-full"
-        v-if="formActive"
-      >
-        <transition
-          mode="out-in"
-          enter-from-class="opacity-0 translate-x-[-50%]"
-          leave-to-class="opacity-0 translate-x-[-50%]"
-          enter-active-class="transition-all duration-[500ms] ease-out"
-          leave-active-class="transition-all duration-[500ms] ease-in"
+  <div class="md:container-width md:container-height p-4">
+    <div
+      class="h-full p-4 rounded-xl bg-white md:grid md:grid-cols-3 md:gap-6"
+    >
+      <!-- Side/Top Menu -->
+      <teleport to="body" :disabled="isDesktop">
+        <div
+          class="top-menu md:side-menu"
         >
-          <KeepAlive>
-            <component
-              :is="currentStepComponent"
-              :isFirst="currentStep === 1"
-              :isLast="currentStep === stepList.length"
-              :validate="validate"
-              :isDesktop="isDesktop"
-              @go-back="prevStep"
-              @go-next="nextStep"
-              @edit-form="onEditForm"
-            ></component>
-          </KeepAlive>
-        </transition>
-      </VeeForm>
-
-      <!-- Thank you -->
-      <div
-        v-else
-        class="h-full flex flex-col items-center justify-center text-center px-24"
-      >
-        <img src="src/assets/images/icon-thank-you.svg" alt="success" />
-        <h1 class="font-bold text-[34px] text-marine-blue mt-6 mb-4">
-          Thank you!
-        </h1>
-        <p>
-          Thanks for confirming your subscription! We hope you have fun using
-          our platform. If you ever need support, please feel free to email us
-          at support@loremgaming.com
-        </p>
-      </div>
-    </main>
+          <MenuItem
+            v-for="step in stepList"
+            :key="step.number"
+            :step="step"
+            :currentStep="currentStep"
+            :isDesktop="isDesktop"
+          />
+        </div>
+      </teleport>
+      <!-- Main Form -->
+      <main class="col-span-2 h-full">
+        <!-- Form -->
+        <VeeForm
+          @submit="onFormSubmit"
+          v-slot="{ validate }"
+          class="h-full"
+          v-if="formActive"
+        >
+          <transition
+            mode="out-in"
+            enter-from-class="opacity-0 translate-x-[-50%]"
+            leave-to-class="opacity-0 translate-x-[-50%]"
+            enter-active-class="transition-all duration-[500ms] ease-out"
+            leave-active-class="transition-all duration-[500ms] ease-in"
+          >
+            <KeepAlive>
+              <component
+                :is="currentStepComponent"
+                :isFirst="currentStep === 1"
+                :isLast="currentStep === stepList.length"
+                :validate="validate"
+                :isDesktop="isDesktop"
+                @go-back="prevStep"
+                @go-next="nextStep"
+                @edit-form="onEditForm"
+              ></component>
+            </KeepAlive>
+          </transition>
+        </VeeForm>
+        <!-- Thank you -->
+        <div
+          v-else
+          class="h-full flex flex-col items-center justify-center text-center px-24"
+        >
+          <img src="src/assets/images/icon-thank-you.svg" alt="success" />
+          <h1 class="font-bold text-[34px] text-marine-blue mt-6 mb-4">
+            Thank you!
+          </h1>
+          <p>
+            Thanks for confirming your subscription! We hope you have fun using
+            our platform. If you ever need support, please feel free to email us
+            at support@loremgaming.com
+          </p>
+        </div>
+      </main>
+    </div>
   </div>
 </template>

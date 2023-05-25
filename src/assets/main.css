@@ -12,11 +12,11 @@ body {
 
 @layer utilities {
   .container-width {
-    width: clamp(768px, 1100px, 96vw);
+    width: clamp(768px, 1100px, 100vw);
   }
 
   .container-height {
-    height: clamp(515px, 730px, 96svh);
+    height: clamp(550px, 760px, calc(100svh - 16px));
   }
 }
 
