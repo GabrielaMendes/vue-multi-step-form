@@ -1,10 +1,14 @@
 <script setup>
 import { computed, ref } from "vue";
+import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
 import FinishingUp from "./components/FinishingUp.vue";
 import PersonalInfo from "./components/PersonalInfo.vue";
 import PickAddOns from "./components/PickAddOns.vue";
 import SelectPlan from "./components/SelectPlan.vue";
 import MenuItem from "./components/MenuItem.vue";
+
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const isDesktop = breakpoints.greater("md");
 
 const formActive = ref(true);
 
@@ -59,16 +63,19 @@ const stepList = [
     class="container-height container-width p-4 rounded-xl bg-white grid grid-cols-3 gap-6"
   >
     <!-- Side/Top Menu -->
-    <div
-      class="h-full px-6 py-12 rounded-2xl bg-[url('src/assets/images/bg-sidebar-desktop.svg')] bg-cover bg-bottom z-50"
-    >
-      <MenuItem
-        v-for="step in stepList"
-        :key="step.number"
-        :step="step"
-        :currentStep="currentStep"
-      />
-    </div>
+    <teleport to="body" :disabled="isDesktop">
+      <div
+        class="top-menu md:side-menu"
+      >
+        <MenuItem
+          v-for="step in stepList"
+          :key="step.number"
+          :step="step"
+          :currentStep="currentStep"
+          :isDesktop="isDesktop"
+        />
+      </div>
+    </teleport>
 
     <!-- Main Form -->
     <main class="col-span-2 h-full">

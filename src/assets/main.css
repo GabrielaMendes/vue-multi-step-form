@@ -17,3 +17,13 @@ body {
 .container-height {
   height: clamp(515px, 730px, 96svh);
 }
+
+@layer components {
+  .top-menu {
+    @apply flex items-center justify-center gap-4 absolute top-0 left-0 w-screen h-64 bg-[url('src/assets/images/bg-sidebar-mobile.svg')] bg-cover bg-center z-[-1];
+  }
+
+  .side-menu {
+    @apply block static w-auto h-full max-h-full px-6 py-12 rounded-2xl bg-[url('src/assets/images/bg-sidebar-desktop.svg')] bg-bottom z-50;
+  }
+}
