@@ -10,12 +10,14 @@ body {
   @apply flex-1 flex flex-col justify-between p-4 rounded-lg border transition duration-[400ms] cursor-pointer hover:border-purplish-blue focus:outline-none focus-visible:border-purplish-blue focus-visible:ring-offset-2 focus-visible:ring-2  focus-visible:ring-marine-blue;
 }
 
-.container-width {
-  width: clamp(768px, 1100px, 96vw);
-}
+@layer utilities {
+  .container-width {
+    width: clamp(768px, 1100px, 96vw);
+  }
 
-.container-height {
-  height: clamp(515px, 730px, 96svh);
+  .container-height {
+    height: clamp(515px, 730px, 96svh);
+  }
 }
 
 @layer components {

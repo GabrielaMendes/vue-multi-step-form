@@ -60,7 +60,7 @@ const stepList = [
 
 <template>
   <div
-    class="container-height container-width p-4 rounded-xl bg-white grid grid-cols-3 gap-6"
+    class="md:container-height md:container-width p-4 rounded-xl bg-white grid grid-cols-3 gap-6"
   >
     <!-- Side/Top Menu -->
     <teleport to="body" :disabled="isDesktop">
@@ -99,6 +99,7 @@ const stepList = [
               :isFirst="currentStep === 1"
               :isLast="currentStep === stepList.length"
               :validate="validate"
+              :isDesktop="isDesktop"
               @go-back="prevStep"
               @go-next="nextStep"
               @edit-form="onEditForm"
