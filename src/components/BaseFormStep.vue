@@ -17,7 +17,7 @@ const goNext = () => {
 </script>
 
 <template>
-  <div class="h-full flex flex-col pt-10 pb-5 px-24">
+  <div class="h-full flex flex-col pt-10 pb-5 px-[15%]">
     <section>
       <h1 class="font-bold text-[34px] text-marine-blue">
         <slot name="title"></slot>
