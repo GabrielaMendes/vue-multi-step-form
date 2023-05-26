@@ -1,6 +1,8 @@
 <script setup>
 import { computed, ref } from "vue";
+import { onBeforeRouteLeave } from "vue-router";
 import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
+import { useIsFormDirty } from "vee-validate";
 import FinishingUp from "./components/FinishingUp.vue";
 import PersonalInfo from "./components/PersonalInfo.vue";
 import PickAddOns from "./components/PickAddOns.vue";
@@ -13,6 +15,9 @@ const isDesktop = breakpoints.greaterOrEqual("md");
 const formActive = ref(true);
 
 const currentStep = ref(1);
+
+const isFirst = computed(() => currentStep.value === 1);
+const isLast = computed(() => currentStep.value === stepList.length);
 
 const nextStep = () => {
   currentStep.value += 1;
@@ -30,8 +35,17 @@ const onEditForm = () => {
   currentStep.value = 2;
 };
 
-const onFormSubmit = () => {
+const onFormSubmit = (values) => {
+  console.log(values);
   formActive.value = false;
+};
+
+const isFormDirty = useIsFormDirty("formId");
+
+window.onbeforeunload = () => {
+  if(isFormDirty) {
+    return "Are you sure you want to leave?"
+  }
 };
 
 const stepList = [
@@ -78,25 +92,20 @@ const stepList = [
       <!-- Main Form -->
       <main class="col-span-2 h-full">
         <!-- Form -->
-        <transition
-          mode="out-in"
-          name="fade"
-        >
+        <transition mode="out-in" name="fade">
           <VeeForm
+            id="formId"
             @submit="onFormSubmit"
             v-slot="{ validate }"
             class="h-full"
             v-if="formActive"
           >
-            <transition
-              mode="out-in"
-              :name="isDesktop ? 'slide' : 'fade'"
-            >
+            <transition mode="out-in" :name="isDesktop ? 'slide' : 'fade'">
               <KeepAlive>
                 <component
                   :is="currentStepComponent"
-                  :isFirst="currentStep === 1"
-                  :isLast="currentStep === stepList.length"
+                  :isFirst="isFirst"
+                  :isLast="isLast"
                   :validate="validate"
                   :isDesktop="isDesktop"
                   @go-back="prevStep"
