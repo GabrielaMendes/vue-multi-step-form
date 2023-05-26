@@ -17,6 +17,9 @@ module.exports = {
       fontFamily: {
         ubuntu: ["'Ubuntu', sans-serif"],
       },
+      boxShadow: {
+        custom: "0 10px 50px 0 rgba(0, 0, 0, 0.08)",
+      },
     },
   },
   plugins: [],
