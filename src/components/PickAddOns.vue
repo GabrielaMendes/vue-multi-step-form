@@ -33,7 +33,7 @@ const { selectedAddOns: pickedAddOns, monthlyPlan: isMonthly } = storeToRefs(pla
         :for="addOn.name"
         tabindex="0"
         @keyup.enter="toggleCheck(addOn.name)"
-        class="flex items-center px-6 py-4 mb-4 rounded-lg border border-light-gray transition-all duration-[400ms] cursor-pointer hover:border-purplish-blue focus:outline-none focus-visible:border-purplish-blue focus-visible:ring-offset-2 focus-visible:ring-2 focus-visible:ring-marine-blue"
+        class="flex items-center px-6 max-[375px]:px-4 py-4 mb-4 rounded-lg border border-light-gray transition-all duration-[400ms] cursor-pointer hover:border-purplish-blue focus:outline-none focus-visible:border-purplish-blue focus-visible:ring-offset-2 focus-visible:ring-2 focus-visible:ring-marine-blue"
         :class="
           pickedAddOns.includes(addOn.name)
             ? 'bg-alabaster border-purplish-blue'
@@ -48,7 +48,7 @@ const { selectedAddOns: pickedAddOns, monthlyPlan: isMonthly } = storeToRefs(pla
           v-model="pickedAddOns"
           class="appearance-none relative cursor-pointer h-5 w-5 border border-light-gray rounded-[4px] transition-colors duration-200 focus:outline-none checked:border-purplish-blue checked:bg-purplish-blue checked:before:absolute checked:before:content-[url('src/assets/images/icon-checkmark.svg')] checked:before:left-[3px] checked:before:top-[-4px]"
         />
-        <div class="ml-6">
+        <div class="ml-6 max-[375px]:ml-4">
           <h3 class="font-medium text-marine-blue mt-auto">{{ addOn.name }}</h3>
           <p class="text-sm">{{ addOn.description }}</p>
         </div>

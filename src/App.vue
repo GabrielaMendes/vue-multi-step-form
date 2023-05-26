@@ -61,7 +61,7 @@ const stepList = [
 <template>
   <div class="md:container-width md:container-height p-4">
     <div
-      class="h-full p-4 rounded-xl bg-white md:grid md:grid-cols-3 md:gap-6"
+      class="mt-24 max-[375px]:mt-16 md:mt-0  h-fit md:h-full p-4 rounded-xl bg-white md:grid md:grid-cols-3 md:gap-6"
     >
       <!-- Side/Top Menu -->
       <teleport to="body" :disabled="isDesktop">

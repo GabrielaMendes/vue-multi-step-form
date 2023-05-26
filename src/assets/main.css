@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 body {
-  @apply bg-magnolia h-[100svh] w-[100vw] font-ubuntu text-cool-gray flex justify-center items-center;
+  @apply relative bg-magnolia overflow-hidden min-h-[100svh] w-screen font-ubuntu text-cool-gray md:flex md:justify-center md:items-center;
 }
 
 .my-plan-option {
-  @apply flex-1 flex flex-col justify-between p-4 rounded-lg border transition duration-[400ms] cursor-pointer hover:border-purplish-blue focus:outline-none focus-visible:border-purplish-blue focus-visible:ring-offset-2 focus-visible:ring-2  focus-visible:ring-marine-blue;
+  @apply mb-3 max-[375px]:mb-2 flex-1 flex items-start gap-4 md:items-stretch md:flex-col md:justify-between p-4  max-[375px]:p-3 rounded-lg border transition duration-[400ms] cursor-pointer hover:border-purplish-blue focus:outline-none focus-visible:border-purplish-blue focus-visible:ring-offset-2 focus-visible:ring-2  focus-visible:ring-marine-blue;
 }
 
 @layer utilities {
   .container-width {
-    width: clamp(768px, 1100px, 100vw);
+    width: clamp(768px, 1200px, 100vw);
   }
 
   .container-height {
@@ -22,7 +22,7 @@ body {
 
 @layer components {
   .top-menu {
-    @apply flex items-center justify-center gap-4 absolute top-0 left-0 w-screen h-64 bg-[url('src/assets/images/bg-sidebar-mobile.svg')] bg-cover bg-center z-[-1];
+    @apply flex justify-center gap-4 absolute top-0 left-0 w-screen h-64 max-h-[30%] bg-[url('src/assets/images/bg-sidebar-mobile.svg')] bg-cover bg-center z-[-1];
   }
 
   .side-menu {

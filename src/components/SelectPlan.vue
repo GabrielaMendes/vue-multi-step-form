@@ -16,7 +16,7 @@ const { monthlyPlan: isMonthly, planTypeSelected } = storeToRefs(planStore)
     </template>
 
     <template v-slot:main>
-      <div class="grid grid-cols-3 gap-4">
+      <div class="md:grid md:grid-cols-3 md:gap-4">
         <!-- Arcade -->
         <label
           v-for="plan in plans"
@@ -42,9 +42,9 @@ const { monthlyPlan: isMonthly, planTypeSelected } = storeToRefs(planStore)
           <img
             :src="plan.icon"
             alt="plan icon"
-            class="w-11 mt-2"
+            class="w-11 md:mt-2"
           />
-          <div class="mt-9">
+          <div class="md:mt-9">
             <h3 class="capitalize font-medium text-marine-blue mt-auto">{{ plan.name }}</h3>
             <p>
               {{
@@ -65,9 +65,9 @@ const { monthlyPlan: isMonthly, planTypeSelected } = storeToRefs(planStore)
         </label>
       </div>
 
-      <!-- Plan Type -->
+      <!-- Plan Billing Type -->
       <div
-        class="mt-8 p-4 flex justify-center gap-6 w-full bg-alabaster rounded-lg font-medium"
+        class="mt-8 max-[375px]:mt-5 p-4  max-[375px]:p-3 flex justify-center gap-6 w-full bg-alabaster rounded-lg font-medium"
       >
         <h3
           class="font-medium"
