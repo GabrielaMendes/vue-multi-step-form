@@ -114,16 +114,45 @@ const stepList = [
               <KeepAlive>
                 <component
                   :is="currentStepComponent"
-                  :isFirst="isFirst"
-                  :isLast="isLast"
-                  :validate="validate"
                   :isDesktop="isDesktop"
-                  @go-back="prevStep"
-                  @go-next="nextStep"
                   @edit-form="onEditForm"
                 ></component>
               </KeepAlive>
             </transition>
+
+            <section
+              class="absolute bottom-0 left-0 w-full flex justify-between mt-auto bg-white p-5 max-[375px]:p-3 md:p-0 md:static"
+            >
+              <button
+                v-show="!isFirst"
+                type="button"
+                @click="prevStep"
+                class="py-3 bg-white text-cool-gray rounded-lg font-medium hover:text-marine-blue focus-visible:outline-none focus-visible:text-marine-blue focus-visible:underline focus-visible:decoration-marine-blue focus-visible:decoration-2"
+              >
+                Go Back
+              </button>
+              <button
+                v-if="!isLast"
+                @click="
+                  validate().then((result) => {
+                    if (result.valid) {
+                      nextStep();
+                    }
+                  })
+                "
+                type="button"
+                class="w-32 py-3 ml-auto bg-marine-blue text-white rounded md:rounded-lg font-medium hover:bg-opacity-[0.85] focus-visible:outline-none focus-visible:bg-opacity-[0.85] focus-visible:ring-offset-2 focus-visible:ring-2 focus-visible:ring-marine-blue"
+              >
+                Next Step
+              </button>
+              <button
+                v-else
+                type="submit"
+                class="w-32 py-3 bg-purplish-blue text-white rounded md:rounded-lg font-medium hover:bg-opacity-70 focus-visible:outline-none focus-visible:bg-opacity-70 focus-visible:ring-offset-2 focus-visible:ring-2 focus-visible:ring-marine-blue"
+              >
+                Confirm
+              </button>
+            </section>
           </VeeForm>
           <!-- Thank you -->
 
@@ -143,11 +172,6 @@ const stepList = [
           </div>
         </transition>
       </main>
-
-      <footer
-        v-if="!isDesktop && formActive"
-        class="absolute bottom-0 left-0 w-full bg-white z-[-1] h-[88px] max-[375px]:h-[72px]"
-      ></footer>
     </div>
   </div>
 </template>
