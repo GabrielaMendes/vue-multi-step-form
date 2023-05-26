@@ -14,6 +14,9 @@ const goNext = () => {
     }
   });
 };
+
+const myForm = document.getElementById('formId');
+const submitEvent = new Event('submit')
 </script>
 
 <template>
@@ -49,7 +52,8 @@ const goNext = () => {
         </button>
         <button
           v-else
-          type="submit"
+          type="button"
+          @click.prevent="myForm.dispatchEvent(submitEvent)"
           class="w-32 py-3 bg-purplish-blue text-white rounded md:rounded-lg font-medium hover:bg-opacity-70 focus-visible:outline-none focus-visible:bg-opacity-70 focus-visible:ring-offset-2 focus-visible:ring-2 focus-visible:ring-marine-blue"
         >
           Confirm
