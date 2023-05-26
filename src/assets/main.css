@@ -6,9 +6,29 @@ body {
   @apply relative bg-magnolia overflow-hidden min-h-[100svh] w-screen font-ubuntu text-cool-gray md:flex md:justify-center md:items-center;
 }
 
-.my-plan-option {
-  @apply mb-3 max-[375px]:mb-2 flex-1 flex items-start gap-4 md:items-stretch md:flex-col md:justify-between p-4  max-[375px]:p-3 rounded-lg border transition duration-[400ms] cursor-pointer hover:border-purplish-blue focus:outline-none focus-visible:border-purplish-blue focus-visible:ring-offset-2 focus-visible:ring-2  focus-visible:ring-marine-blue;
+/* Transitions */
+
+.fade-enter-from,
+.fade-leave-to {
+  @apply opacity-0;
 }
+
+.fade-enter-active,
+.fade-leave-active {
+  @apply transition-opacity duration-200 ease-out;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  @apply opacity-0 translate-x-[-50%];
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  @apply transition-all duration-500 ease-out;
+}
+
+/* Layers */
 
 @layer utilities {
   .container-width {
@@ -27,5 +47,9 @@ body {
 
   .side-menu {
     @apply block static w-auto h-full max-h-full px-6 py-12 rounded-2xl bg-[url('src/assets/images/bg-sidebar-desktop.svg')] bg-bottom z-50;
+  }
+
+  .my-plan-option {
+    @apply mb-3 max-[375px]:mb-2 flex-1 flex items-start gap-4 md:items-stretch md:flex-col md:justify-between p-4  max-[375px]:p-3 rounded-lg border transition duration-[400ms] cursor-pointer hover:border-purplish-blue focus:outline-none focus-visible:border-purplish-blue focus-visible:ring-offset-2 focus-visible:ring-2  focus-visible:ring-marine-blue;
   }
 }

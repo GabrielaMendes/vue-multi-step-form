@@ -80,10 +80,7 @@ const stepList = [
         <!-- Form -->
         <transition
           mode="out-in"
-          enter-from-class="opacity-0"
-          leave-to-class="opacity-0"
-          enter-active-class="transition-opacity duration-200 ease-out"
-          leave-active-class="transition-all duration-200 ease-in"
+          name="fade"
         >
           <VeeForm
             @submit="onFormSubmit"
@@ -93,10 +90,7 @@ const stepList = [
           >
             <transition
               mode="out-in"
-              enter-from-class="opacity-0 translate-x-[-50%]"
-              leave-to-class="opacity-0 translate-x-[-50%]"
-              enter-active-class="transition-all duration-500 ease-out"
-              leave-active-class="transition-all duration-500 ease-in"
+              name="slide"
             >
               <KeepAlive>
                 <component
