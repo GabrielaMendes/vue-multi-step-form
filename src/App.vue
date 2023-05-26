@@ -90,7 +90,7 @@ const stepList = [
           >
             <transition
               mode="out-in"
-              name="slide"
+              :name="isDesktop ? 'slide' : 'fade'"
             >
               <KeepAlive>
                 <component
