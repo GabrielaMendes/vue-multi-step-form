@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h-full flex flex-col p-4 max-[375px]:p-3 md:pt-10 md:pb-5 md:px-[15%]"
+    class="h-fit flex flex-col p-4 max-[375px]:p-3 md:pt-10 md:pb-5 md:px-[15%]"
   >
     <section>
       <h1

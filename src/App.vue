@@ -107,7 +107,7 @@ const stepList = [
             id="formId"
             @submit="onFormSubmit"
             v-slot="{ validate }"
-            class="h-full"
+            class="h-full md:flex md:flex-col md:justify-between"
             v-if="formActive"
           >
             <transition mode="out-in" :name="isDesktop ? 'slide' : 'fade'">
@@ -120,8 +120,9 @@ const stepList = [
               </KeepAlive>
             </transition>
 
+            <!-- Buttons -->
             <section
-              class="absolute bottom-0 left-0 w-full flex justify-between mt-auto bg-white p-5 max-[375px]:p-3 md:p-0 md:static"
+              class="absolute bottom-0 left-0 w-full flex justify-between mt-auto bg-white md:bg-transparent p-4 md:pb-5 md:px-[15%] max-[375px]:p-3 md:static"
             >
               <button
                 v-show="!isFirst"

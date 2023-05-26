@@ -36,7 +36,7 @@ body {
   }
 
   .container-height {
-    height: clamp(550px, 760px, calc(100svh - 16px));
+    height: clamp(630px, 760px, calc(100svh - 16px));
   }
 }
 
