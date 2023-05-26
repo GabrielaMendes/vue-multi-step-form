@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply relative bg-magnolia overflow-hidden min-h-[100svh] w-screen font-ubuntu text-cool-gray md:flex md:justify-center md:items-center;
+  @apply relative bg-magnolia min-h-[100svh] w-screen font-ubuntu text-cool-gray md:flex md:justify-center md:items-center;
 }
 
 /* Transitions */
@@ -36,7 +36,7 @@ body {
   }
 
   .container-height {
-    height: clamp(630px, 760px, calc(100svh - 16px));
+    height: clamp(600px, 760px, calc(100svh - 16px));
   }
 }
 
@@ -46,7 +46,7 @@ body {
   }
 
   .side-menu {
-    @apply block static w-auto h-full max-h-full px-6 py-12 rounded-2xl bg-[url('src/assets/images/bg-sidebar-desktop.svg')] bg-bottom z-50;
+    @apply block static w-auto h-[100%] max-h-[100%] px-6 py-12 rounded-2xl bg-[url('src/assets/images/bg-sidebar-desktop.svg')] bg-bottom z-50;
   }
 
   .my-plan-option {
