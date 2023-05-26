@@ -2,6 +2,7 @@
 import { usePlanStore } from "../stores/plan";
 import { getPlanPrice, getAddOnPrice } from "../data/plans-data";
 import BaseFormStep from "./BaseFormStep.vue";
+import { storeToRefs } from "pinia";
 
 const {
   monthlyPlan: isMonthly,
@@ -9,7 +10,7 @@ const {
   planTypeSelected,
   selectedAddOns,
   totalPrice,
-} = usePlanStore();
+} = storeToRefs(usePlanStore());
 
 defineEmits(["editForm"]);
 </script>

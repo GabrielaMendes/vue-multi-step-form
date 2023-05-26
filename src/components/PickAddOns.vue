@@ -40,7 +40,8 @@ const { selectedAddOns: pickedAddOns, monthlyPlan: isMonthly } = storeToRefs(pla
             : ''
         "
       >
-        <input
+        <VeeField
+          name="addOns"
           type="checkbox"
           tabindex="-1"
           :id="addOn.name"

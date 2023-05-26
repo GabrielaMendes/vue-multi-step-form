@@ -1,8 +1,8 @@
 <script setup>
 import { computed, ref } from "vue";
-import { onBeforeRouteLeave } from "vue-router";
 import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
 import { useIsFormDirty } from "vee-validate";
+import { usePlanStore } from "./stores/plan";
 import FinishingUp from "./components/FinishingUp.vue";
 import PersonalInfo from "./components/PersonalInfo.vue";
 import PickAddOns from "./components/PickAddOns.vue";
@@ -36,16 +36,26 @@ const onEditForm = () => {
 };
 
 const onFormSubmit = (values) => {
-  console.log(values);
+  const { monthlyPlan, totalPrice: total } = usePlanStore();
+
+  console.log({
+    id: crypto.randomUUID(),
+    ...values,
+    billingType: monthlyPlan ? 'monthly' : 'yearly',
+    totalPrice: total
+  });
+
   formActive.value = false;
 };
 
-const isFormDirty = useIsFormDirty("formId");
+const isFormDirty = useIsFormDirty();
 
 window.onbeforeunload = () => {
-  if(isFormDirty) {
-    return "Are you sure you want to leave?"
+  if (isFormDirty.value) {
+    return "Are you sure you want to leave?";
   }
+
+  return null;
 };
 
 const stepList = [
