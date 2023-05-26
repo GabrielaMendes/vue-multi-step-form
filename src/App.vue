@@ -41,8 +41,8 @@ const onFormSubmit = (values) => {
   console.log({
     id: crypto.randomUUID(),
     ...values,
-    billingType: monthlyPlan ? 'monthly' : 'yearly',
-    totalPrice: total
+    billingType: monthlyPlan ? "monthly" : "yearly",
+    totalPrice: total,
   });
 
   formActive.value = false;
@@ -143,6 +143,11 @@ const stepList = [
           </div>
         </transition>
       </main>
+
+      <footer
+        v-if="!isDesktop && formActive"
+        class="absolute bottom-0 left-0 w-full bg-white z-[-1] h-[88px] max-[375px]:h-[72px]"
+      ></footer>
     </div>
   </div>
 </template>
