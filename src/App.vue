@@ -61,13 +61,11 @@ const stepList = [
 <template>
   <div class="md:container-width md:container-height p-4">
     <div
-      class="mt-24 max-[375px]:mt-16 md:mt-0  h-fit md:h-full p-4 rounded-xl bg-white md:grid md:grid-cols-3 md:gap-6"
+      class="mt-24 max-[375px]:mt-16 md:mt-0 h-fit md:h-full p-4 rounded-xl bg-white md:grid md:grid-cols-3 md:gap-6"
     >
       <!-- Side/Top Menu -->
       <teleport to="body" :disabled="isDesktop">
-        <div
-          class="top-menu md:side-menu"
-        >
+        <div class="top-menu md:side-menu">
           <MenuItem
             v-for="step in stepList"
             :key="step.number"
@@ -80,48 +78,57 @@ const stepList = [
       <!-- Main Form -->
       <main class="col-span-2 h-full">
         <!-- Form -->
-        <VeeForm
-          @submit="onFormSubmit"
-          v-slot="{ validate }"
-          class="h-full"
-          v-if="formActive"
+        <transition
+          mode="out-in"
+          enter-from-class="opacity-0"
+          leave-to-class="opacity-0"
+          enter-active-class="transition-opacity duration-200 ease-out"
+          leave-active-class="transition-all duration-200 ease-in"
         >
-          <transition
-            mode="out-in"
-            enter-from-class="opacity-0 translate-x-[-50%]"
-            leave-to-class="opacity-0 translate-x-[-50%]"
-            enter-active-class="transition-all duration-[500ms] ease-out"
-            leave-active-class="transition-all duration-[500ms] ease-in"
+          <VeeForm
+            @submit="onFormSubmit"
+            v-slot="{ validate }"
+            class="h-full"
+            v-if="formActive"
           >
-            <KeepAlive>
-              <component
-                :is="currentStepComponent"
-                :isFirst="currentStep === 1"
-                :isLast="currentStep === stepList.length"
-                :validate="validate"
-                :isDesktop="isDesktop"
-                @go-back="prevStep"
-                @go-next="nextStep"
-                @edit-form="onEditForm"
-              ></component>
-            </KeepAlive>
-          </transition>
-        </VeeForm>
-        <!-- Thank you -->
-        <div
-          v-else
-          class="h-full flex flex-col items-center justify-center text-center px-24"
-        >
-          <img src="src/assets/images/icon-thank-you.svg" alt="success" />
-          <h1 class="font-bold text-[34px] text-marine-blue mt-6 mb-4">
-            Thank you!
-          </h1>
-          <p>
-            Thanks for confirming your subscription! We hope you have fun using
-            our platform. If you ever need support, please feel free to email us
-            at support@loremgaming.com
-          </p>
-        </div>
+            <transition
+              mode="out-in"
+              enter-from-class="opacity-0 translate-x-[-50%]"
+              leave-to-class="opacity-0 translate-x-[-50%]"
+              enter-active-class="transition-all duration-500 ease-out"
+              leave-active-class="transition-all duration-500 ease-in"
+            >
+              <KeepAlive>
+                <component
+                  :is="currentStepComponent"
+                  :isFirst="currentStep === 1"
+                  :isLast="currentStep === stepList.length"
+                  :validate="validate"
+                  :isDesktop="isDesktop"
+                  @go-back="prevStep"
+                  @go-next="nextStep"
+                  @edit-form="onEditForm"
+                ></component>
+              </KeepAlive>
+            </transition>
+          </VeeForm>
+          <!-- Thank you -->
+
+          <div
+            v-else
+            class="h-full flex flex-col items-center justify-center text-center px-24"
+          >
+            <img src="src/assets/images/icon-thank-you.svg" alt="success" />
+            <h1 class="font-bold text-[34px] text-marine-blue mt-6 mb-4">
+              Thank you!
+            </h1>
+            <p>
+              Thanks for confirming your subscription! We hope you have fun
+              using our platform. If you ever need support, please feel free to
+              email us at support@loremgaming.com
+            </p>
+          </div>
+        </transition>
       </main>
     </div>
   </div>
