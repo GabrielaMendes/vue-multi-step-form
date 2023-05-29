@@ -2,13 +2,19 @@
 import { useIsFieldValid, useIsFieldTouched } from "vee-validate";
 import BaseFormStep from "./BaseFormStep.vue";
 
-const isNameValid = useIsFieldValid('name');
-const isEmailValid = useIsFieldValid('email');
-const isPhoneValid = useIsFieldValid('phone');
+const isNameValid = useIsFieldValid("name");
+const isEmailValid = useIsFieldValid("email");
+const isPhoneValid = useIsFieldValid("phone");
 
-const isNameTouched = useIsFieldTouched('name');
-const isEmailTouched = useIsFieldTouched('email');
-const isPhoneTouched = useIsFieldTouched('phone');
+const isNameTouched = useIsFieldTouched("name");
+const isEmailTouched = useIsFieldTouched("email");
+const isPhoneTouched = useIsFieldTouched("phone");
+
+const updateUnsaved = () => {
+  window.onbeforeunload = () => {
+    return "Are you sure you want to leave?";
+  };
+};
 </script>
 
 <template>
@@ -34,9 +40,14 @@ const isPhoneTouched = useIsFieldTouched('phone');
           type="text"
           id="name"
           name="name"
-          :class="!isNameValid && isNameTouched? ' border-strawberry-red' : ' border-light-gray'"
+          :class="
+            !isNameValid && isNameTouched
+              ? ' border-strawberry-red'
+              : ' border-light-gray'
+          "
           placeholder="e.g. Stephen King"
           :rules="'required|alpha_spaces|min:3|max:100'"
+          @input="updateUnsaved"
         />
       </div>
       <!-- Email -->
@@ -56,9 +67,14 @@ const isPhoneTouched = useIsFieldTouched('phone');
           type="email"
           id="email"
           name="email"
-          :class="!isEmailValid && isEmailTouched ? ' border-strawberry-red' : ' border-light-gray'"
+          :class="
+            !isEmailValid && isEmailTouched
+              ? ' border-strawberry-red'
+              : ' border-light-gray'
+          "
           placeholder="e.g. stephenking@lorem.com"
           :rules="'required|email|min:3|max:100'"
+          @input="updateUnsaved"
         />
       </div>
       <!-- Phone Number -->
@@ -78,9 +94,14 @@ const isPhoneTouched = useIsFieldTouched('phone');
           type="text"
           id="phone"
           name="phone"
-          :class="!isPhoneValid && isPhoneTouched ? ' border-strawberry-red' : ' border-light-gray'"
+          :class="
+            !isPhoneValid && isPhoneTouched
+              ? ' border-strawberry-red'
+              : ' border-light-gray'
+          "
           placeholder="e.g. +1 234 567 890"
           :rules="'required|phone'"
+          @input="updateUnsaved"
         />
       </div>
     </template>
@@ -89,6 +110,6 @@ const isPhoneTouched = useIsFieldTouched('phone');
 
 <style scoped>
 input {
-  @apply block w-full p-3 rounded-md text-marine-blue font-medium border transition duration-500 focus:outline-none focus:border-purplish-blue
+  @apply block w-full p-3 rounded-md text-marine-blue font-medium border transition duration-500 focus:outline-none focus:border-purplish-blue;
 }
 </style>

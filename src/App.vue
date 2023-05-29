@@ -1,7 +1,6 @@
 <script setup>
 import { computed, ref } from "vue";
 import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
-import { useIsFormDirty } from "vee-validate";
 import { usePlanStore } from "./stores/plan";
 import FinishingUp from "./components/FinishingUp.vue";
 import PersonalInfo from "./components/PersonalInfo.vue";
@@ -46,16 +45,6 @@ const onFormSubmit = (values) => {
   });
 
   formActive.value = false;
-};
-
-const isFormDirty = useIsFormDirty();
-
-window.onbeforeunload = () => {
-  if (isFormDirty.value) {
-    return "Are you sure you want to leave?";
-  }
-
-  return null;
 };
 
 const stepList = [
@@ -104,7 +93,7 @@ const stepList = [
         <!-- Form -->
         <transition mode="out-in" name="fade">
           <VeeForm
-            id="formId"
+            name="veeForm"
             @submit="onFormSubmit"
             v-slot="{ validate }"
             class="h-full md:flex md:flex-col md:justify-between"
