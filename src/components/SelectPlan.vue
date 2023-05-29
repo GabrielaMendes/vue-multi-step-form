@@ -1,11 +1,11 @@
 <script setup>
-import { storeToRefs } from 'pinia'
-import { usePlanStore } from "../stores/plan"
+import { storeToRefs } from "pinia";
+import { usePlanStore } from "../stores/plan";
 import { plans } from "../data/plans-data";
 import BaseFormStep from "./BaseFormStep.vue";
 
-const planStore = usePlanStore()
-const { monthlyPlan: isMonthly, planTypeSelected } = storeToRefs(planStore)
+const planStore = usePlanStore();
+const { monthlyPlan: isMonthly, planTypeSelected } = storeToRefs(planStore);
 </script>
 
 <template>
@@ -23,11 +23,11 @@ const { monthlyPlan: isMonthly, planTypeSelected } = storeToRefs(planStore)
           :key="plan.name"
           tabindex="0"
           :for="plan.name"
-          @keypress.enter="e => e.target.click()"
+          @keypress.enter="(e) => e.target.click()"
           class="my-plan-option"
           :class="
             planTypeSelected === plan.name
-              ? ' bg-alabaster border-purplish-blue'
+              ? ' border-purplish-blue bg-alabaster'
               : ' border-light-gray'
           "
         >
@@ -39,17 +39,13 @@ const { monthlyPlan: isMonthly, planTypeSelected } = storeToRefs(planStore)
             class="hidden"
             v-model="planTypeSelected"
           />
-          <img
-            :src="plan.icon"
-            alt="plan icon"
-            class="w-11 md:mt-2"
-          />
+          <img :src="plan.icon" alt="plan icon" class="w-11 md:mt-2" />
           <div class="md:mt-9">
-            <h3 class="capitalize font-medium text-marine-blue mt-auto">{{ plan.name }}</h3>
+            <h3 class="mt-auto font-medium capitalize text-marine-blue">
+              {{ plan.name }}
+            </h3>
             <p>
-              {{
-                isMonthly ? `$${plan.mo}/mo` : `$${plan.yr}/yr`
-              }}
+              {{ isMonthly ? `$${plan.mo}/mo` : `$${plan.yr}/yr` }}
             </p>
             <transition
               enter-from-class="opacity-0 scale-y-0"
@@ -67,7 +63,7 @@ const { monthlyPlan: isMonthly, planTypeSelected } = storeToRefs(planStore)
 
       <!-- Plan Billing Type -->
       <div
-        class="mt-8 max-[375px]:mt-5 p-4  max-[375px]:p-3 flex justify-center gap-6 w-full bg-alabaster rounded-lg font-medium"
+        class="mt-8 w-full flex justify-center gap-6 rounded-lg bg-alabaster p-4 font-medium max-[375px]:mt-5 max-[375px]:p-3"
       >
         <h3
           class="font-medium"
@@ -75,14 +71,16 @@ const { monthlyPlan: isMonthly, planTypeSelected } = storeToRefs(planStore)
         >
           Monthly
         </h3>
-        <label for="checkbox" class="hidden">Select plan type (monthly or yearly):</label>
+        <label for="checkbox" class="hidden"
+          >Select plan type (monthly or yearly):</label
+        >
         <input
           type="checkbox"
           id="checkbox"
           checked="true"
           @keypress.enter="(e) => e.target.click()"
           v-model="isMonthly"
-          class="appearance-none relative h-6 w-12 rounded-full bg-marine-blue cursor-pointer after:h-4 after:w-4 focus:outline-none focus-visible:ring-offset-2 focus-visible:ring-2 focus-visible:ring-marine-blue after:rounded-full after:bg-alabaster after:absolute after:top-1 after:right-1 after:transition after:duration-300 checked:after:translate-x-[-150%]"
+          class="appearance-none relative h-6 w-12 cursor-pointer rounded-full bg-marine-blue after:absolute after:right-1 after:top-1 after:h-4 after:w-4 after:rounded-full after:bg-alabaster after:transition after:duration-300 checked:after:translate-x-[-150%] focus:outline-none focus-visible:ring-2 focus-visible:ring-marine-blue focus-visible:ring-offset-2"
         />
         <h3
           class="font-medium"

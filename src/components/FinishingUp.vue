@@ -23,10 +23,10 @@ defineEmits(["editForm"]);
     </template>
 
     <template v-slot:main>
-      <div class="bg-alabaster p-6 rounded-lg">
+      <div class="rounded-lg bg-alabaster p-6">
         <div class="flex items-center justify-between">
           <div>
-            <h3 class="text-marine-blue text-lg font-bold capitalize">
+            <h3 class="text-lg font-bold capitalize text-marine-blue">
               {{ planTypeSelected }}({{ isMonthly ? "Monthly" : "Yearly" }})
             </h3>
             <button
@@ -37,7 +37,7 @@ defineEmits(["editForm"]);
               Change
             </button>
           </div>
-          <p class="text-marine-blue font-bold">
+          <p class="font-bold text-marine-blue">
             ${{ getPlanPrice(planTypeSelected, billingType) }} /
             {{ billingType }}
           </p>
@@ -59,7 +59,7 @@ defineEmits(["editForm"]);
 
       <div class="flex justify-between p-6">
         <p>Total (per {{ isMonthly ? "month" : "year" }})</p>
-        <p class="text-xl text-purplish-blue font-bold">
+        <p class="text-xl font-bold text-purplish-blue">
           +${{ totalPrice }} / {{ billingType }}
         </p>
       </div>

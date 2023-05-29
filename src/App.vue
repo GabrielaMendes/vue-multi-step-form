@@ -74,7 +74,7 @@ const stepList = [
 <template>
   <div class="md:container-width md:container-height p-4">
     <div
-      class="mt-24 max-[375px]:mt-16 md:mt-0 h-fit md:h-[100%] p-4 rounded-xl bg-white md:grid md:grid-cols-3 md:gap-6 shadow-custom"
+      class="mt-24 h-fit rounded-xl bg-white p-4 shadow-custom max-[375px]:mt-16 md:mt-0 md:grid md:h-[100%] md:grid-cols-3 md:gap-6"
     >
       <!-- Side/Top Menu -->
       <teleport to="body" :disabled="isDesktop">
@@ -111,13 +111,13 @@ const stepList = [
 
             <!-- Buttons -->
             <section
-              class="absolute bottom-0 left-0 w-full flex justify-between mt-auto bg-white md:bg-transparent p-4 md:pb-5 md:px-[15%] max-[375px]:p-3 md:static"
+              class="absolute bottom-0 left-0 mt-auto flex w-full justify-between bg-white p-4 max-[375px]:p-3 md:static md:bg-transparent md:px-[15%] md:pb-5"
             >
               <button
                 v-show="!isFirst"
                 type="button"
                 @click="prevStep"
-                class="py-3 bg-white text-cool-gray rounded-lg font-medium hover:text-marine-blue focus-visible:outline-none focus-visible:text-marine-blue focus-visible:underline focus-visible:decoration-marine-blue focus-visible:decoration-2"
+                class="rounded-lg bg-white py-3 font-medium text-cool-gray hover:text-marine-blue focus-visible:text-marine-blue focus-visible:underline focus-visible:decoration-marine-blue focus-visible:decoration-2 focus-visible:outline-none"
               >
                 Go Back
               </button>
@@ -131,14 +131,14 @@ const stepList = [
                   })
                 "
                 type="button"
-                class="w-32 py-3 ml-auto bg-marine-blue text-white rounded md:rounded-lg font-medium hover:bg-opacity-[0.85] focus-visible:outline-none focus-visible:bg-opacity-[0.85] focus-visible:ring-offset-2 focus-visible:ring-2 focus-visible:ring-marine-blue"
+                class="ml-auto w-32 rounded bg-marine-blue py-3 font-medium text-white hover:bg-opacity-[0.85] focus-visible:bg-opacity-[0.85] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marine-blue focus-visible:ring-offset-2 md:rounded-lg"
               >
                 Next Step
               </button>
               <button
                 v-else
                 type="submit"
-                class="w-32 py-3 bg-purplish-blue text-white rounded md:rounded-lg font-medium hover:bg-opacity-70 focus-visible:outline-none focus-visible:bg-opacity-70 focus-visible:ring-offset-2 focus-visible:ring-2 focus-visible:ring-marine-blue"
+                class="w-32 rounded bg-purplish-blue py-3 font-medium text-white hover:bg-opacity-70 focus-visible:bg-opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-marine-blue focus-visible:ring-offset-2 md:rounded-lg"
               >
                 Confirm
               </button>
@@ -148,10 +148,10 @@ const stepList = [
 
           <div
             v-else
-            class="h-full flex flex-col items-center justify-center text-center py-16 px-6 md:px-24"
+            class="h-full flex flex-col items-center justify-center px-6 py-16 text-center md:px-24"
           >
             <img src="src/assets/images/icon-thank-you.svg" alt="success" />
-            <h1 class="font-bold text-[34px] text-marine-blue mt-6 mb-4">
+            <h1 class="mb-4 mt-6 text-[34px] font-bold text-marine-blue">
               Thank you!
             </h1>
             <p>

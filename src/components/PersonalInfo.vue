@@ -28,11 +28,11 @@ const updateUnsaved = () => {
       <!-- Name -->
       <div class="mb-3">
         <div class="flex justify-between">
-          <label for="name" class="inline-block mb-1 text-sm text-marine-blue"
+          <label for="name" class="mb-1 inline-block text-sm text-marine-blue"
             >Name</label
           >
           <ErrorMessage
-            class="text-strawberry-red text-sm font-medium"
+            class="text-sm font-medium text-strawberry-red"
             name="name"
           />
         </div>
@@ -40,6 +40,7 @@ const updateUnsaved = () => {
           type="text"
           id="name"
           name="name"
+          class="text-input"
           :class="
             !isNameValid && isNameTouched
               ? ' border-strawberry-red'
@@ -55,11 +56,11 @@ const updateUnsaved = () => {
         <div class="flex justify-between">
           <label
             for="email"
-            class="inline-block mb-1 mt-2 text-sm text-marine-blue"
+            class="mb-1 mt-2 inline-block text-sm text-marine-blue"
             >Email Adress</label
           >
           <ErrorMessage
-            class="text-strawberry-red text-sm font-medium"
+            class="text-sm font-medium text-strawberry-red"
             name="email"
           />
         </div>
@@ -67,6 +68,7 @@ const updateUnsaved = () => {
           type="email"
           id="email"
           name="email"
+          class="text-input"
           :class="
             !isEmailValid && isEmailTouched
               ? ' border-strawberry-red'
@@ -82,11 +84,11 @@ const updateUnsaved = () => {
         <div class="flex justify-between">
           <label
             for="phone"
-            class="inline-block mb-1 mt-2 text-sm text-marine-blue"
+            class="mb-1 mt-2 inline-block text-sm text-marine-blue"
             >Phone Number</label
           >
           <ErrorMessage
-            class="text-strawberry-red text-sm font-medium"
+            class="text-sm font-medium text-strawberry-red"
             name="phone"
           />
         </div>
@@ -94,6 +96,7 @@ const updateUnsaved = () => {
           type="text"
           id="phone"
           name="phone"
+          class="text-input"
           :class="
             !isPhoneValid && isPhoneTouched
               ? ' border-strawberry-red'
@@ -108,8 +111,4 @@ const updateUnsaved = () => {
   </BaseFormStep>
 </template>
 
-<style scoped>
-input {
-  @apply block w-full p-3 rounded-md text-marine-blue font-medium border transition duration-500 focus:outline-none focus:border-purplish-blue;
-}
-</style>
+<style scoped></style>

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply relative bg-magnolia min-h-[100svh] w-screen font-ubuntu text-cool-gray md:flex md:justify-center md:items-center;
+  @apply relative min-h-[100svh] w-screen bg-magnolia font-ubuntu text-cool-gray md:flex md:items-center md:justify-center;
 }
 
 /* Transitions */
@@ -20,7 +20,7 @@ body {
 
 .slide-enter-from,
 .slide-leave-to {
-  @apply opacity-0 translate-x-[-50%];
+  @apply translate-x-[-50%] opacity-0;
 }
 
 .slide-enter-active,
@@ -42,14 +42,18 @@ body {
 
 @layer components {
   .top-menu {
-    @apply flex justify-center gap-4 absolute top-0 left-0 w-screen h-64 max-h-[30%] bg-[url('src/assets/images/bg-sidebar-mobile.svg')] bg-cover bg-center z-[-1];
+    @apply absolute left-0 top-0 z-[-1] h-64 max-h-[30%] w-screen flex justify-center gap-4 bg-[url('src/assets/images/bg-sidebar-mobile.svg')] bg-cover bg-center;
   }
 
   .side-menu {
-    @apply block static w-auto h-[100%] max-h-[100%] px-6 py-12 rounded-2xl bg-[url('src/assets/images/bg-sidebar-desktop.svg')] bg-bottom z-50;
+    @apply static z-50 block h-[100%] max-h-[100%] w-auto rounded-2xl bg-[url('src/assets/images/bg-sidebar-desktop.svg')] bg-bottom px-6 py-12;
   }
 
   .my-plan-option {
-    @apply mb-3 max-[375px]:mb-2 flex-1 flex items-start gap-4 md:items-stretch md:flex-col md:justify-between p-4  max-[375px]:p-3 rounded-lg border transition duration-[400ms] cursor-pointer hover:border-purplish-blue focus:outline-none focus-visible:border-purplish-blue focus-visible:ring-offset-2 focus-visible:ring-2  focus-visible:ring-marine-blue;
+    @apply mb-3 flex flex-1 cursor-pointer items-start gap-4 rounded-lg border p-4 transition  duration-[400ms] hover:border-purplish-blue focus:outline-none focus-visible:border-purplish-blue focus-visible:ring-2 focus-visible:ring-marine-blue focus-visible:ring-offset-2 max-[375px]:mb-2 max-[375px]:p-3 md:flex-col md:items-stretch  md:justify-between;
+  }
+
+  .text-input {
+    @apply block w-full rounded border p-3 font-medium text-marine-blue transition duration-500 focus:border-purplish-blue focus:outline-none md:rounded-md;
   }
 }
