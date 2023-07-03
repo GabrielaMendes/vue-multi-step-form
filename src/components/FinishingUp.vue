@@ -1,8 +1,10 @@
 <script setup>
 import { usePlanStore } from "../stores/plan";
-import { getPlanPrice, getAddOnPrice } from "../data/plans-data";
-import BaseFormStep from "./BaseFormStep.vue";
+import { usePlans } from "../composables/usePlans";
 import { storeToRefs } from "pinia";
+import BaseFormStep from "./BaseFormStep.vue";
+
+const { getPlanPrice, getAddOnPrice } = usePlans();
 
 const {
   monthlyPlan: isMonthly,

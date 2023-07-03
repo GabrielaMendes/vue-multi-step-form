@@ -1,8 +1,10 @@
 <script setup>
-import { addOns } from "../data/plans-data";
+import { usePlans } from "../composables/usePlans";
 import { usePlanStore } from "../stores/plan";
-import BaseFormStep from "./BaseFormStep.vue";
 import { storeToRefs } from "pinia";
+import BaseFormStep from "./BaseFormStep.vue";
+
+const { addOns } = usePlans();
 
 const toggleCheck = (name) => {
   const idx = pickedAddOns.value.indexOf(name);
@@ -34,7 +36,7 @@ const { selectedAddOns: pickedAddOns, monthlyPlan: isMonthly } =
         :for="addOn.name"
         tabindex="0"
         @keyup.enter="toggleCheck(addOn.name)"
-        class="mb-4 cursor-pointer flex items-center rounded-lg border border-light-gray px-6 py-4 transition-all duration-[400ms] hover:border-purplish-blue focus:outline-none focus-visible:border-purplish-blue focus-visible:ring-2 focus-visible:ring-marine-blue focus-visible:ring-offset-2 max-[375px]:px-4"
+        class="mb-4 flex cursor-pointer items-center rounded-lg border border-light-gray px-6 py-4 transition-all duration-[400ms] hover:border-purplish-blue focus:outline-none focus-visible:border-purplish-blue focus-visible:ring-2 focus-visible:ring-marine-blue focus-visible:ring-offset-2 max-[375px]:px-4"
         :class="
           pickedAddOns.includes(addOn.name)
             ? 'border-purplish-blue bg-alabaster'
@@ -48,7 +50,7 @@ const { selectedAddOns: pickedAddOns, monthlyPlan: isMonthly } =
           :id="addOn.name"
           :value="addOn.name"
           v-model="pickedAddOns"
-          class="relative shrink-0 h-5 w-5 cursor-pointer appearance-none rounded-[4px] border border-light-gray transition-colors duration-200 checked:border-purplish-blue checked:bg-purplish-blue checked:before:absolute checked:before:left-[3px] checked:before:top-[-4px] checked:before:content-[url('src/assets/images/icon-checkmark.svg')] focus:outline-none"
+          class="relative h-5 w-5 shrink-0 cursor-pointer appearance-none rounded-[4px] border border-light-gray transition-colors duration-200 checked:border-purplish-blue checked:bg-purplish-blue checked:before:absolute checked:before:left-[3px] checked:before:top-[-4px] checked:before:content-[url('src/assets/images/icon-checkmark.svg')] focus:outline-none"
         />
         <div class="ml-6 max-[375px]:ml-4">
           <h3 class="mt-auto font-medium text-marine-blue">{{ addOn.name }}</h3>

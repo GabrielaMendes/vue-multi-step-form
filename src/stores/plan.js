@@ -1,6 +1,8 @@
 import { computed, ref } from "vue";
 import { defineStore } from "pinia";
-import { getPlanPrice, getAddOnPrice } from "../data/plans-data";
+import { usePlans } from "../composables/usePlans";
+
+const { getPlanPrice, getAddOnPrice } = usePlans();
 
 export const usePlanStore = defineStore("plan", () => {
   const monthlyPlan = ref(true);
