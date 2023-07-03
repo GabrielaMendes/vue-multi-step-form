@@ -150,7 +150,7 @@ const stepList = [
             v-else
             class="h-full flex flex-col items-center justify-center px-6 py-16 text-center md:px-24"
           >
-            <img src="src/assets/images/icon-thank-you.svg" alt="success" />
+            <img src="/src/assets/images/icon-thank-you.svg" alt="success" />
             <h1 class="mb-4 mt-6 text-[34px] font-bold text-marine-blue">
               Thank you!
             </h1>
