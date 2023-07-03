@@ -24,7 +24,7 @@ defineEmits(["editForm"]);
 
     <template v-slot:main>
       <div class="rounded-lg bg-alabaster p-6">
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between gap-1">
           <div>
             <h3 class="text-lg font-bold capitalize text-marine-blue">
               {{ planTypeSelected }}({{ isMonthly ? "Monthly" : "Yearly" }})
