@@ -6,6 +6,10 @@ body {
   @apply relative min-h-[100svh] w-screen bg-magnolia font-ubuntu text-cool-gray md:flex md:items-center md:justify-center;
 }
 
+button {
+  @apply transition-colors duration-200;
+}
+
 /* Transitions */
 
 .fade-enter-from,
@@ -36,7 +40,7 @@ body {
   }
 
   .container-height {
-    height: clamp(600px, 760px, calc(100svh - 16px));
+    height: clamp(635px, 760px, calc(100svh - 16px));
   }
 }
 
