@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from "vue";
 import { useIsFieldValid, useIsFieldTouched } from "vee-validate";
 import BaseFormStep from "./BaseFormStep.vue";
 
@@ -15,6 +16,33 @@ const updateUnsaved = () => {
     return "Are you sure you want to leave?";
   };
 };
+
+const inputs = [
+  {
+    label: "Name",
+    type: "text",
+    id: "name",
+    placeholder: "e.g. Stephen King",
+    errorCondition: computed(() => !isNameValid.value && isNameTouched.value),
+    rules: "required|alpha_spaces|min:3|max:100"
+  },
+  {
+    label: "Email Adress",
+    type: "email",
+    id: "email",
+    placeholder: "e.g. stephenking@lorem.com",
+    errorCondition: computed(() => !isEmailValid.value && isEmailTouched.value),
+    rules: "required|email|min:3|max:100"
+  },
+  {
+    label: "Phone Number",
+    type: "text",
+    id: "phone",
+    placeholder: "e.g. +1 234 567 890",
+    errorCondition: computed(() => !isPhoneValid.value && isPhoneTouched.value),
+    rules: "required|phone"
+  },
+]
 </script>
 
 <template>
@@ -26,84 +54,28 @@ const updateUnsaved = () => {
 
     <template v-slot:main>
       <!-- Name -->
-      <div class="mb-3">
+      <div v-for="input in inputs" :key="input.id" class="mb-5">
         <div class="flex justify-between">
-          <label for="name" class="mb-1 inline-block text-sm text-marine-blue"
-            >Name</label
+          <label :for="input.id" class="mb-1 inline-block text-sm text-marine-blue"
+            >{{ input.label }}</label
           >
           <ErrorMessage
             class="text-sm font-medium text-strawberry-red"
-            name="name"
+            :name="input.id"
           />
         </div>
         <VeeField
-          type="text"
-          id="name"
-          name="name"
+          :type="input.type"
+          :id="input.id"
+          :name="input.id"
           class="text-input"
           :class="
-            !isNameValid && isNameTouched
+            input.errorCondition.value
               ? ' border-strawberry-red'
               : ' border-light-gray'
           "
-          placeholder="e.g. Stephen King"
-          :rules="'required|alpha_spaces|min:3|max:100'"
-          @input="updateUnsaved"
-        />
-      </div>
-      <!-- Email -->
-      <div class="mb-3">
-        <div class="flex justify-between">
-          <label
-            for="email"
-            class="mb-1 mt-2 inline-block text-sm text-marine-blue"
-            >Email Adress</label
-          >
-          <ErrorMessage
-            class="text-sm font-medium text-strawberry-red"
-            name="email"
-          />
-        </div>
-        <VeeField
-          type="email"
-          id="email"
-          name="email"
-          class="text-input"
-          :class="
-            !isEmailValid && isEmailTouched
-              ? ' border-strawberry-red'
-              : ' border-light-gray'
-          "
-          placeholder="e.g. stephenking@lorem.com"
-          :rules="'required|email|min:3|max:100'"
-          @input="updateUnsaved"
-        />
-      </div>
-      <!-- Phone Number -->
-      <div class="mb-3">
-        <div class="flex justify-between">
-          <label
-            for="phone"
-            class="mb-1 mt-2 inline-block text-sm text-marine-blue"
-            >Phone Number</label
-          >
-          <ErrorMessage
-            class="text-sm font-medium text-strawberry-red"
-            name="phone"
-          />
-        </div>
-        <VeeField
-          type="text"
-          id="phone"
-          name="phone"
-          class="text-input"
-          :class="
-            !isPhoneValid && isPhoneTouched
-              ? ' border-strawberry-red'
-              : ' border-light-gray'
-          "
-          placeholder="e.g. +1 234 567 890"
-          :rules="'required|phone'"
+          :placeholder="input.placeholder"
+          :rules="input.rules"
           @input="updateUnsaved"
         />
       </div>
@@ -111,4 +83,3 @@ const updateUnsaved = () => {
   </BaseFormStep>
 </template>
 
-<style scoped></style>
