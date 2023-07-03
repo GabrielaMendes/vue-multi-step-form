@@ -46,11 +46,11 @@ button {
 
 @layer components {
   .top-menu {
-    @apply absolute left-0 top-0 z-[-1] h-64 max-h-[30%] w-screen flex justify-center gap-4 bg-[url('src/assets/images/bg-sidebar-mobile.svg')] bg-cover bg-center;
+    @apply absolute left-0 top-0 z-[-1] h-64 max-h-[30%] w-screen flex justify-center gap-4 bg-[url('/src/assets/images/bg-sidebar-mobile.svg')] bg-cover bg-center;
   }
 
   .side-menu {
-    @apply static z-50 block h-[100%] max-h-[100%] w-auto rounded-2xl bg-[url('src/assets/images/bg-sidebar-desktop.svg')] bg-bottom px-6 py-12;
+    @apply static z-50 block h-[100%] max-h-[100%] w-auto rounded-2xl bg-[url('/src/assets/images/bg-sidebar-desktop.svg')] bg-bottom px-6 py-12;
   }
 
   .my-plan-option {

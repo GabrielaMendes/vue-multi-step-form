@@ -1,19 +1,19 @@
 export const plans = [
   {
     name: "arcade",
-    icon: "src/assets/images/icon-arcade.svg",
+    icon: "/src/assets/images/icon-arcade.svg",
     mo: 9,
     yr: 90,
   },
   {
     name: "advanced",
-    icon: "src/assets/images/icon-advanced.svg",
+    icon: "/src/assets/images/icon-advanced.svg",
     mo: 12,
     yr: 120,
   },
   {
     name: "pro",
-    icon: "src/assets/images/icon-pro.svg",
+    icon: "/src/assets/images/icon-pro.svg",
     mo: 15,
     yr: 150,
   },
