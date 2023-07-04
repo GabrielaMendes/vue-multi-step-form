@@ -50,7 +50,7 @@ const { selectedAddOns: pickedAddOns, monthlyPlan: isMonthly } =
           :id="addOn.name"
           :value="addOn.name"
           v-model="pickedAddOns"
-          class="relative h-5 w-5 shrink-0 cursor-pointer appearance-none rounded-[4px] border border-light-gray transition-colors duration-200 checked:border-purplish-blue checked:bg-purplish-blue checked:before:absolute checked:before:left-[3px] checked:before:top-[-4px] checked:before:content-[url('/src/assets/images/icon-checkmark.svg')] focus:outline-none"
+          class="relative h-5 w-5 shrink-0 cursor-pointer appearance-none rounded-[4px] border border-light-gray transition-colors duration-200 checked:border-purplish-blue checked:bg-purplish-blue checked:before:absolute checked:before:left-[3px] checked:before:top-[-4px] checked:before:content-[url('/images/icon-checkmark.svg')] focus:outline-none"
         />
         <div class="ml-6 max-[375px]:ml-4">
           <h3 class="mt-auto font-medium text-marine-blue">{{ addOn.name }}</h3>
