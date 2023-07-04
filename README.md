@@ -40,7 +40,7 @@ Mobile view:
 
 ### Links
 
-- Live Site URL: [Vue Multi-Step-Form](https://vue-multi-step-form-blsr.vercel.app/)
+- Live Site URL: [Vue Multi-Step-Form](https://vue-multi-step-form-steel.vercel.app/)
 
 ## My process
 
