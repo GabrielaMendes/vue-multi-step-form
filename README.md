@@ -32,11 +32,11 @@ Users should be able to:
 
 Desktop view:
 
-![](./screenshot/screenshot-desktop.png)
+![](./screenshot/screenshot-desktop-layout.png)
 
 Mobile view:
 
-![](./screenshot/screenshot-mobile.png)
+![](./screenshot/screenshot-mobile-layout.png)
 
 ### Links
 
